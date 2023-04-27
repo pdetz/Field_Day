@@ -1,0 +1,125 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin:0;
+  padding: 0;
+  background-color:#000;
+  color:#fff;
+}
+
+#app{
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "DejaVu Sans", sans-serif;
+    text-rendering: optimizeLegibility;
+    display:flex;
+    flex-flow: row;
+    justify-content: center;
+    overflow-y:auto;
+    height: 100vh;
+} 
+
+.buttonbar {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  
+}
+
+#sidebar {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: top;
+  align-content: center;
+}
+
+.scrollLeft {
+    direction:rtl;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+}
+.scrollLeft::-webkit-scrollbar {
+    background:#000;
+}
+
+.scrollLeft::-webkit-scrollbar-thumb {
+    background:#222;
+    border-radius: 1rem;
+}
+
+.scrollLeft::-webkit-scrollbar-thumb:hover {
+  background:#668;
+}
+
+#displayArea {
+    width: 48rem;
+    direction: ltr;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem 1.25rem;
+    background: #fafafa;
+    color: #000;
+}
+
+#lineups {
+  display: none;
+}
+
+#tools {
+    direction:ltr;
+    flex-direction: column;
+    padding: 0.5rem 1rem 0 1rem;
+    max-width: 22rem;
+}
+
+.info {
+  font-size: 0.875rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  color: #888;
+  padding: 0.5rem 0;
+}
+
+#info > div{
+  color: #334;
+  font-size: 0.875rem;
+  margin:0.2em;
+  border:none;
+  padding:0;
+}
+#about-btn:hover{
+  cursor: pointer;
+  color:#6af;
+}
+
+
+  /* Styling for the modal container */
+#modal-container {
+    display: none; /* Hide the container by default */
+    position: fixed; /* Set it to fixed position */
+    z-index: 100; /* Set the z-index to be on top of everything else */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Add a black background with opacity */
+  }
+  
+#about{
+    background-color: #f00;
+    margin: 15% auto;
+    padding: 1em;
+    border: 1px solid #888;
+    max-width: 30em;
+    text-align: center;
+    position: relative;
+    border-radius: 0.5em;
+  }

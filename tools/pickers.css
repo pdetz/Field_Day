@@ -1,0 +1,133 @@
+button.palette {
+    outline: 0.125rem solid #000;
+    border: 0.125rem solid currentColor;
+    height: 2rem;
+    width: 2rem;
+    margin: 0.1875rem;
+    padding: 0;
+    text-align: center;
+    font-size: 1rem;
+    transition: 0.1s ease-in;
+}
+
+button.palette.swim {
+    border-color: #fff;
+    color:#000;
+}
+
+button.palette:hover{
+    outline-color: #888;
+    border-color: #000; 
+}
+
+button.palette:active{
+    outline-color: #000;
+    border-color: currentColor;
+    filter: brightness(50%);
+    transition: 0s;
+}
+
+button.palette.swim:active {
+    border-color: #fff;
+    color:#000;
+}
+
+button.palette.sel{
+    outline-color: #fff;
+    border-color: #000; 
+    transition: 0.25s ease-in;
+}
+
+div.b{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 0.0625rem solid #223;
+    margin: 0.5rem 0;
+    width: 20rem;
+}
+
+div.palette{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 0.3rem;
+    padding:0;
+    margin-left: 0;
+    width: 19rem;
+}
+
+div.slide {
+    z-index: 1;
+    display: flex;
+    flex-flow: nowrap;
+    width: 19rem;
+    overflow-x: hidden;
+}
+
+div.slider.pos1{
+    transform: translate(0);
+}
+
+div.slider.pos0{
+    transform: translate(-21rem);    
+}
+
+div.toggle{
+    border: 0.125rem solid black;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-flow: row;
+    width: 18.625rem;
+    cursor: pointer;
+}
+
+div.toggle:hover{
+    outline: 2px solid #888;
+}
+
+div.toggle:active{
+    filter: brightness(50%);
+}
+
+div.slider {
+    z-index: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    min-width: calc(200% + 2rem);
+}
+div.toggle>div {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    transition: 1s ease;
+}
+
+div.underline{
+    width: 18.625rem;
+    margin: -0.3125rem 0 0.5rem 0;
+}
+
+div.sliiide {
+    transition: transform 1s cubic-bezier(0.38, -0.29, 0.46, 1.39);
+}
+
+div.line{
+    border-top: 0.0625rem solid;
+    width: 9.125rem; 
+    transition: transform 1s cubic-bezier(0.38, -0.29, 0.46, 1.39);
+}
+div.line.pos1{
+    transform-origin: right;
+    transform: scaleX(1) translateX(9.5rem);
+}
+div.line.pos0{
+    transform-origin: right;
+    transform: scaleX(1) translateX(0);
+}

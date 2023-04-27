@@ -1,0 +1,63 @@
+/*Mobile view*/
+@media screen and (max-width: 50rem) {
+    .desktop {display:none}
+
+    #app{
+        flex-flow: column;
+    }
+
+    .scrollLeft {
+        height:auto;
+        width: 100%;
+    }
+
+    #sidebar {
+        width: 100%
+    }
+
+}
+
+/* Tablet view */
+@media screen and (min-width: 50rem) and (max-width: 73rem) {
+    
+    #app{
+        align-content: left;
+    }
+
+    #sidebar {
+        height: 100vh;
+        align-content: center;
+    }
+}
+
+  /*Desktop view*/
+@media screen and (min-width: 73rem) {
+    
+    .mobile {display:none}
+
+    #sidebar {
+        height: 100vh;
+        align-content: center;
+    }
+
+}
+
+
+  @media print {
+  
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    #documentView, #sidebar {display:none}
+    #app, body {background:none}
+
+    #lineups {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: none;
+        color: #000;
+    }
+  }
