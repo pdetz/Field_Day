@@ -37,7 +37,6 @@ function getTeacherSchedules(stations, times) {
         teachers.push({name: station.firstTeacher, schedule: updatedSchedule});
       }
     });
-  console.log(teachers);
     return teachers;
 }
 

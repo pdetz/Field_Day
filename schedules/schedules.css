@@ -1,3 +1,8 @@
+.title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
 table.schedule{
     border-collapse: collapse; 
     width: 100%;

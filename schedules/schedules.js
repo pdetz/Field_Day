@@ -1,5 +1,6 @@
 function ScheduleTable({teacher, selectedColors}){
-    return e(Div, null, teacher.name, 
+    return e('div', null, 
+        e('div', {className:'title'}, teacher.name+ "'s Field Day Schedule"), 
         e('table', {key:teacher.name, className:"schedule"},
             e('thead', {style:{backgroundColor: selectedColors[0]}}, 
                 e('tr', {key:"head", className:"head"},
