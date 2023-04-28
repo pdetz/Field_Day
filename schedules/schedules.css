@@ -12,21 +12,36 @@ table.schedule thead, tbody {
 table.schedule thead {
     font-weight: bold;
 }
+
 table.schedule>tbody>tr:nth-child(odd){background-color: #fafafa;}
 
-table.schedule td {
+td {
     border: 0.0625rem solid #fff; 
     vertical-align: middle;
-    line-height: 1rem;
-    font-size: 0.8125rem;
-    padding: 0.0625rem;
-    width: 1.875rem;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    padding: 0.0625rem 0.25rem;
 }
 
-table.schedule td.name {
-    width: 12.5rem;
+td.n {
+    width: 2.25rem;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+td.station {
+    width: 10rem;
     padding-left: 0.25rem;
     text-align: left;
+}
+
+td.lunch {
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+td.time {
+    width: 6.125rem
 }
 
 @media print {

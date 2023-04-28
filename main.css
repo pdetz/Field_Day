@@ -25,101 +25,86 @@ body {
     height: 100vh;
 } 
 
-.buttonbar {
+.topbar {
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
-  
-}
-
-#sidebar {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: top;
-  align-content: center;
-}
-
-.scrollLeft {
-    direction:rtl;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 100vh;
-}
-.scrollLeft::-webkit-scrollbar {
-    background:#000;
-}
-
-.scrollLeft::-webkit-scrollbar-thumb {
-    background:#222;
-    border-radius: 1rem;
-}
-
-.scrollLeft::-webkit-scrollbar-thumb:hover {
-  background:#668;
+  justify-content: center;
+  padding-top: 0.5rem;
 }
 
 #displayArea {
     width: 48rem;
     direction: ltr;
     text-align: center;
-    margin: 1rem;
+    margin: 1rem 0;
     padding: 1rem 1.25rem;
     background: #fafafa;
     color: #000;
 }
 
-#lineups {
-  display: none;
+.dropdown {
+  position: relative;
+  width: 12rem;
 }
 
-#tools {
-    direction:ltr;
-    flex-direction: column;
-    padding: 0.5rem 1rem 0 1rem;
-    max-width: 22rem;
-}
-
-.info {
-  font-size: 0.875rem;
-  display: flex;
+.dropdown-button {
   width: 100%;
-  justify-content: space-between;
-  color: #888;
-  padding: 0.5rem 0;
-}
-
-#info > div{
-  color: #334;
-  font-size: 0.875rem;
-  margin:0.2em;
-  border:none;
-  padding:0;
-}
-#about-btn:hover{
+  background-color: #446;
+  color: #fff;
+  border: 0.125rem solid #000;
+  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
   cursor: pointer;
-  color:#6af;
 }
 
+.dropdown-menu {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #446;
+  border-radius: 0.25rem;
+  box-shadow: 0.5rem 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+  padding: 0.125rem;
+}
 
-  /* Styling for the modal container */
-#modal-container {
-    display: none; /* Hide the container by default */
-    position: fixed; /* Set it to fixed position */
-    z-index: 100; /* Set the z-index to be on top of everything else */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4); /* Add a black background with opacity */
-  }
-  
-#about{
-    background-color: #f00;
-    margin: 15% auto;
-    padding: 1em;
-    border: 1px solid #888;
-    max-width: 30em;
-    text-align: center;
-    position: relative;
-    border-radius: 0.5em;
-  }
+.option-button {
+  display: block;
+  width: calc(100% - 0.25rem);
+  border: 0.125rem solid #000;
+  border-radius: 0.25rem;
+  background-color: #000;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  outline: none;
+  margin: 0.125rem;
+}
+
+.btn {
+  transition: 0.1s ease-in;
+}
+
+.btn.sel {
+  outline: 0.125rem solid #fff;
+  background-color: #6af;
+  color: #000;
+}
+
+.btn:hover {
+  transition: 0.2s ease-in;
+  background-color: #6af;
+  color: #000;
+  outline: 0.125rem solid #fff;
+}
+
+.btn:active {
+  transition: 0s;
+  background-color: #000;
+  color: #fff;
+}

@@ -1,18 +1,22 @@
 const e = React.createElement;
 
 function App(){
-    const stations = csvStringToArrayOfObjects(SCHEDULE3_5);
-    const teachers = getTeacherSchedules(stations);
-    console.log(teachers);
-    
-    const [selectedColors, setSelectedColors] = React.useState([HEADERS[random(0, 7)], ROWS[random(0, 7)]]);
-    const [scaleFactor, setScaleFactor] = React.useState([1, "auto"]);
-    const [selectedTeacher, setSelectedTeacher] = React.useState(teachers[0]);
+    const stations = []; const times = [];
+    const schedule = csvStringToArrayOfObjects(SCHEDULE3_5);
 
-    const handleTeacherChange = (event) => {
-        const name = event.target.value;
-        const selected = teachers.find((teacher) => teacher.name === name);
-        setSelectedTeacher(selected);
+    schedule.map(({ n, stationName, location, start, stop, firstTeacher }) => {
+        stations.push({ n, stationName, location, firstTeacher });
+        times.push({ start, stop });
+    });
+
+    const teachers = getTeacherSchedules(stations, times);
+    
+    const [selectedColors, setSelectedColors] = React.useState([HEADERS[5], ROWS[5]]);
+    const [scaleFactor, setScaleFactor] = React.useState([1, "auto"]);
+    const [selectedTeacher, setSelectedTeacher] = React.useState(teachers[1]);
+
+    const handleTeacherChange = (name) => {
+        setSelectedTeacher(teachers.find((teacher) => teacher.name === name));
       };
 
     React.useEffect(() => {
@@ -36,7 +40,10 @@ function App(){
       }, []);
 
     return e(Div, {key: "documentView", css:"#documentView"},
-        e(TeacherDropdown, {teachers, selectedTeacher, handleTeacherChange}),
+        e(Div, {key: "topbar", css: "topbar"},
+            e(Dropdown, {options: teachers.map(teacher => teacher.name), 
+                selectedOption: selectedTeacher.name, handleOptionChange: handleTeacherChange}),
+        ),
         e(Div, {key: "resize", css:"resize", style:{height: scaleFactor[1]}},                
             e(Div, {key: "displayArea", css:"#displayArea"}, 
                 e(ScheduleTable, {key:selectedTeacher.name, teacher: selectedTeacher, selectedColors})

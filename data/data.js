@@ -13,19 +13,31 @@ function csvStringToArrayOfObjects(csvString) {
     });
   }
   
-function getTeacherSchedules(stations) {
+function getTeacherSchedules(stations, times) {
     let teachers = [{name: "Select a Teacher", schedule:[]}];
 
     stations.forEach((station, index) => {
-        if (station.firstTeacher !== '') {
-            let teacher = { name: station.firstTeacher, schedule: [] };
-            for (let i = index; i < index + stations.length; i++) {
-                const { n, stationName, location, start, stop } = stations[i % stations.length];
-                teacher.schedule.push({n, stationName, location, start, stop})
-            }
-            teachers.push(teacher);
+      if (station.firstTeacher !== '') {
+        let schedule = [];
+        for (let i = 0; i < stations.length; i++) {
+          const { n, stationName, location } = stations[(i + index) % stations.length];
+          if (stations[schedule.length].n == "Lunch") {
+            schedule.push({n:"Lunch", stationName:"Lunch", location:'' });
+          }
+          if (n != "Lunch") {
+            schedule.push({n, stationName, location });
+          } 
         }
+        
+        const updatedSchedule = schedule.reduce((acc, curr, i) => {
+          acc.push({...curr, start: times[i].start, stop: times[i].stop });
+          return acc;
+        }, []);
+        
+        teachers.push({name: station.firstTeacher, schedule: updatedSchedule});
+      }
     });
+  console.log(teachers);
     return teachers;
 }
 
