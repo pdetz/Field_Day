@@ -1,4 +1,4 @@
-function ScheduleTable({teacher, selectedColors}){
+function TeacherScheduleTable({teacher, selectedColors}){
     return e('div', null, 
         e('div', {className:'title'}, teacher.name+ "'s Field Day Schedule"), 
         e('table', {key:teacher.name, className:"schedule"},
@@ -19,6 +19,31 @@ function ScheduleTable({teacher, selectedColors}){
                       e('td', {key: "location"}, station.location),
                       e('td', {key: "start", className: "time"}, station.start),
                       e('td', {key: "stop", className: "time"}, station.stop)]
+                )})
+            )
+        )
+    )
+}
+
+function StationScheduleTable({station, selectedColors}){
+    return e('div', null, 
+        e('div', {className:'title'}, station.stationName + " Schedule"), 
+        e('table', {key:station.name, className:"schedule"},
+            e('thead', {style:{backgroundColor: selectedColors[0]}}, 
+                e('tr', {key:"head", className:"head"},
+                    e('td', {key: "teacher", colSpan: "2"}, "Teacher"),
+                    e('td', {key: "start"}, "Start"),
+                    e('td', {key: "stop"}, "Stop")
+                )
+            ),
+            e('tbody', {style:{backgroundColor: selectedColors[1]}},
+                station.schedule.map((s) => {
+                    return e('tr', {key: s.n}, s.n == "Lunch" ?
+                      e('td', {key:"lunch", className: "lunch", colSpan: "4"}, "Lunch - " + s.start + " - " + s.stop) :
+                      [e('td', {key: "n", className:"n"}, s.n + '.'),
+                      e('td', {key: "station", className:"station"}, s.teacher),
+                      e('td', {key: "start", className: "time"}, s.start),
+                      e('td', {key: "stop", className: "time"}, s.stop)]
                 )})
             )
         )

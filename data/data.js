@@ -40,6 +40,21 @@ function getTeacherSchedules(stations, times) {
     return teachers;
 }
 
+function getStationsSchedules(stations, teachers, times){
+  stations.forEach(station =>{
+    station.schedule = times.map(block =>{
+      return {n: block.n, teacher:'', start: block.start, stop: block.stop}
+    })
+  });
+
+  teachers.forEach(teacher => {
+    teacher.schedule.forEach((station, index) =>{
+      const teacherStation = stations.find(s => s.stationName === station.stationName );
+      teacherStation.schedule[index].teacher = teacher.name;
+   })
+  });
+}
+
 const HEADERS = ['#f66', '#fa0', '#ff0', '#5d0', '#6db', '#6af', '#c6d', '#999'];
 const ROWS =    ['#fdd', '#fea', '#ffa', '#dfb', '#dfe', '#def', '#edf', '#eee'];
 
