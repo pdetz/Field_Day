@@ -59,75 +59,46 @@ div.palette{
     width: 19rem;
 }
 
-div.slide {
+div.slider {
     z-index: 1;
     display: flex;
     flex-flow: nowrap;
-    width: 19rem;
-    overflow-x: hidden;
+    width: 52rem;;
+    overflow-x: scroll;
+    height: 100vh;
+    border: 1px solid yellow;
 }
 
-div.slider.pos1{
-    transform: translate(0);
-}
-
-div.slider.pos0{
-    transform: translate(-21rem);    
-}
-
-div.toggle{
-    border: 0.125rem solid black;
-    border-radius: 0.3rem;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    flex-flow: row;
-    width: 18.625rem;
-    cursor: pointer;
-}
-
-div.toggle:hover{
-    outline: 2px solid #888;
-}
-
-div.toggle:active{
-    filter: brightness(50%);
-}
-
-div.slider {
+div.slides {
     z-index: 0;
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    min-width: calc(200% + 2rem);
+    flex-flow: row nowrap;
+    transition: transform 1s cubic-bezier(0.38, -0.29, 0.46, 1.39);
+    border: 1px solid red;
 }
-div.toggle>div {
+
+div.slides.list {
+    transform: translate(-50rem);
+}
+div.slides.sched {
+    transform: translate(-100rem);
+}
+
+div.slide {
     display: flex;
+    flex-flow: row wrap;
+    align-items: center;
     justify-content: center;
-    flex: 1;
-    text-align: center;
-    transition: 1s ease;
+    width: 50rem;
+    border: 1px solid blue;
 }
 
-div.underline{
-    width: 18.625rem;
-    margin: -0.3125rem 0 0.5rem 0;
-}
-
-div.sliiide {
-    transition: transform 1s cubic-bezier(0.38, -0.29, 0.46, 1.39);
-}
-
-div.line{
-    border-top: 0.0625rem solid;
-    width: 9.125rem; 
-    transition: transform 1s cubic-bezier(0.38, -0.29, 0.46, 1.39);
-}
-div.line.pos1{
-    transform-origin: right;
-    transform: scaleX(1) translateX(9.5rem);
-}
-div.line.pos0{
-    transform-origin: right;
-    transform: scaleX(1) translateX(0);
+div.back {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 100vh;
+    border:1px solid purple;
 }

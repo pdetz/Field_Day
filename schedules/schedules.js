@@ -1,6 +1,6 @@
 function TeacherScheduleTable({teacher, selectedColors}){
-    return e('div', null, 
-        e('div', {className:'title'}, teacher.name+ "'s Field Day Schedule"), 
+    return [ 
+        e('div', {key:'title', className:'title'}, teacher.name+ "'s Field Day Schedule"), 
         e('table', {key:teacher.name, className:"schedule"},
             e('thead', {style:{backgroundColor: selectedColors[0]}}, 
                 e('tr', {key:"head", className:"head"},
@@ -22,13 +22,13 @@ function TeacherScheduleTable({teacher, selectedColors}){
                 )})
             )
         )
-    )
+    ]
 }
 
 function StationScheduleTable({station, selectedColors}){
-    return e('div', null, 
-        e('div', {className:'title'}, station.stationName + " Schedule"), 
-        e('table', {key:station.name, className:"schedule"},
+    return [ 
+        e('div', {key:'title', className:'title'}, station.stationName + " Schedule"), 
+        e('table', {key:station.stationName, className:"schedule"},
             e('thead', {style:{backgroundColor: selectedColors[0]}}, 
                 e('tr', {key:"head", className:"head"},
                     e('td', {key: "teacher", colSpan: "2"}, "Teacher"),
@@ -44,6 +44,33 @@ function StationScheduleTable({station, selectedColors}){
                       e('td', {key: "station", className:"station"}, s.teacher),
                       e('td', {key: "start", className: "time"}, s.start),
                       e('td', {key: "stop", className: "time"}, s.stop)]
+                )})
+            )
+        )
+    ]
+}
+
+function ViewFullSchedule({fieldDay, selectedColors}) {
+
+    return e('div', {id: "displayArea", className: 'landscape'}, 
+        e('div', {className:'title'}, fieldDay.name + " Field Day 2023 - Full Schedule"),
+        e('table', {key:'full', className:"full schedule"},
+            e('thead', {style:{backgroundColor: selectedColors[0]}}, 
+                e('tr', {key:"head", className:"head"},
+                    e('td', {key: "blank"}, ""),
+                    fieldDay.stations.map(station =>{
+                        if (station.n != "Lunch") return e('td', {key: station.stationName}, station.stationName)
+                    })
+                )
+            ),
+            e('tbody', {style:{backgroundColor: selectedColors[1]}},
+                fieldDay.times.map((s, n) => {
+                    return e('tr', {key: s.n}, s.n == "Lunch" ?
+                        e('td', {key:"Lunch", className: "lunch", colSpan: fieldDay.stations.length + 1}, "Lunch - " + s.start + " - " + s.stop) :
+                        [e('td', {key: s.n, className: "time"}, s.start + ' ' + s.stop),
+                        fieldDay.stations.map(station => { 
+                            if (station.n != "Lunch") return e('td', {key:station.stationName}, station.schedule[n].teacher)
+                        })]
                 )})
             )
         )
@@ -68,6 +95,13 @@ const Dropdown = ({ options, selectedOption, handleOptionChange }) => {
     );
 };
 
+const DropdownList = ({options, selectedOption, handleButtonClick}) => {
+    return e("div", { className: "dropdown-menu" }, options.map((option) => {
+        return e("button", { key: option, className: "option-button btn" + (selectedOption == option ? " sel":""),
+            onClick: () => handleButtonClick(option)}, option)
+        })
+        )
+}
 const TeacherDropdown = ({ teachers, selectedTeacher, handleTeacherChange }) => {
   return e('select', { id: 'teacher-dropdown', value: selectedTeacher?.id, onChange: handleTeacherChange },
       teachers.map((teacher) => e('option', { key: teacher.name, value: teacher.name }, teacher.name)
