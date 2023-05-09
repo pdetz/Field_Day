@@ -37,19 +37,20 @@ function App(){
                 handleButtonClick: (name) => {
                     setSelectedTeacher(fieldDay.teachers.find((teacher) => teacher.name === name));
                     setSlidePosition(' sched');
-                    setBackButton(e(BackButton, {setSlidePosition, position: ' list'}));
                 }});
             if (selectedTeacher != '') {
                 setSchedule(e(TeacherScheduleTable, {teacher: selectedTeacher, selectedColors}));
             }
         }
         else if (scheduleType == 'lead'){
-            let stationList = fieldDay.stations.map(t=>t.stationName);
+            let stationList = fieldDay.stations.map(t=>t.stationName).filter(s => s !== 'Lunch').sort(
+                (a, b) => (a > b) ? 1: -1
+            );
+
             setList({options: stationList, selectedOption: selectedStation.stationName,
                 handleButtonClick: (stationName) => {
                     setselectedStation(fieldDay.stations.find((station) => station.stationName === stationName));
                     setSlidePosition(' sched');
-                    setBackButton(e(BackButton, {setSlidePosition, position: ' list'}));
                 }});
             if (selectedStation != '') {
                 setSchedule(e(StationScheduleTable, {station: selectedStation, selectedColors}));
@@ -57,7 +58,6 @@ function App(){
         }
         if (fieldDay.name != '' && slidePosition != ' sched' && (scheduleType == 'lead' || scheduleType == 'teach' )) {
             setSlidePosition(' list');
-            setBackButton(e(BackButton, {setSlidePosition, position: ''}));
         }
     }
 
@@ -66,7 +66,9 @@ function App(){
       }, [scheduleType, fieldDay, selectedTeacher, selectedStation]);      
     //setSlides([e(NavScreen, {key:'nav', fieldDay, fieldDays, handleFieldDayChange, scheduleType, handleScheduleTypeChange})]);
 
-    return [e('div', {key:'back', className: 'back'}, backButton),
+    return [e('div', {key:'back', className: 'back'}, 
+            e(BackButton, {setSlidePosition, slidePosition})
+        ),
         e(Div, {key: "documentView", css:"#documentView slider"},
             e('div', {key:'slider', className: 'slides' + slidePosition},
                 e('div', {key:'nav', className: 'slide'},
@@ -84,11 +86,11 @@ function App(){
     ]
 }
 
-function BackButton({setSlidePosition, position}){
-    return e('button', {className: 'back',
+function BackButton({slidePosition, setSlidePosition}){
+    return slidePosition == '' ? '' : e('button', {className: 'back',
         onClick: () => {
-            console.log(position);
-            setSlidePosition(position);
+            if (slidePosition == ' list') setSlidePosition('');
+            else if (slidePosition == ' sched') setSlidePosition(' list');
         }
     }, 'Back');
 }
