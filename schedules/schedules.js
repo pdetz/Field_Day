@@ -24,7 +24,7 @@ function TeacherScheduleTable({teacher, selectedColors}){
         )
     ]
 }
-
+// Define a page div, background, margins, etc.
 function StationScheduleTable({station, selectedColors}){
     return [ 
         e('div', {key:'title', className:'title'}, station.stationName + " Schedule"), 
@@ -52,7 +52,7 @@ function StationScheduleTable({station, selectedColors}){
 
 function ViewFullSchedule({fieldDay, selectedColors}) {
 
-    return e('div', {id: "displayArea", className: 'landscape'}, 
+    return e('div', {id: "displayArea", className: 'landscape page'}, 
         e('div', {className:'title'}, fieldDay.name + " Field Day 2023 - Full Schedule"),
         e('table', {key:'full', className:"full schedule"},
             e('thead', {style:{backgroundColor: selectedColors[0]}}, 
@@ -76,35 +76,3 @@ function ViewFullSchedule({fieldDay, selectedColors}) {
         )
     )
 }
-
-const Dropdown = ({ options, selectedOption, handleOptionChange }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
-  
-    const handleButtonClick = (option) => {
-      handleOptionChange(option);
-      setIsOpen(false);
-    };
-    
-    return e("div", { className: "dropdown" }, 
-        e("button", { className: "dropdown-button btn", onClick: () =>  setIsOpen(!isOpen) }, selectedOption),
-        isOpen && 
-            e("div", { className: "dropdown-menu" }, options.map((option) =>
-                e("button", { key: option, className: "option-button btn" + (selectedOption == option ? " sel":""),
-                onClick: () => handleButtonClick(option)}, option))
-            )
-    );
-};
-
-const DropdownList = ({options, selectedOption, handleButtonClick}) => {
-    return e("div", { className: "dropdown-menu" }, options.map((option) => {
-        return e("button", { key: option, className: "option-button btn" + (selectedOption == option ? " sel":""),
-            onClick: () => handleButtonClick(option)}, option)
-        })
-        )
-}
-const TeacherDropdown = ({ teachers, selectedTeacher, handleTeacherChange }) => {
-  return e('select', { id: 'teacher-dropdown', value: selectedTeacher?.id, onChange: handleTeacherChange },
-      teachers.map((teacher) => e('option', { key: teacher.name, value: teacher.name }, teacher.name)
-    ),
-  );
-};

@@ -49,15 +49,7 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-    #documentView, #sidebar {display:none}
+    .topbar {display:none}
     #app, body {background:none}
 
-    #lineups {
-        display: block;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        background: none;
-        color: #000;
-    }
   }

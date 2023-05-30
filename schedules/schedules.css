@@ -26,6 +26,7 @@ td {
     font-size: 1rem;
     line-height: 1.2rem;
     padding: 0.0625rem 0.25rem;
+    text-align: center;
 }
 
 td.n {

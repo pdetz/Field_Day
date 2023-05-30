@@ -18,133 +18,45 @@ function App(){
         return {name: fd.name, stations: currentStations, times: currentTimes, teachers: currentTeachers};
     });
 
-    const [fieldDay, setFieldDay] = React.useState({name:'', teachers:[], stations:[]});
-    const [scheduleType, setScheduleType] = React.useState('');
+    const [fieldDay, setFieldDay] = React.useState(fieldDays[0]);
     //const [scaleFactor, setScaleFactor] = React.useState([1, "auto"]);
-    const [selectedTeacher, setSelectedTeacher] = React.useState({name:'', schedule:[]});
-    const [selectedStation, setselectedStation] = React.useState({stationName:'', schedule:[]});
-    const [slidePosition, setSlidePosition] = React.useState('');
-    const [slides, setSlides] = React.useState([]);
-    const [backButton, setBackButton] = React.useState('');
-    const [list, setList] = React.useState({options:[], selectedOption:'', handleButtonClick:null});
     const [schedule, setSchedule] = React.useState();
     const [selectedColors, setSelectedColors] = React.useState([HEADERS[5], ROWS[5]]);
 
-    const updateView = () => {
-        console.log(slidePosition);
-        if (scheduleType == 'teach'){
-            setList({options: fieldDay.teachers.map(t=>t.name), selectedOption: selectedTeacher.name,
-                handleButtonClick: (name) => {
-                    setSelectedTeacher(fieldDay.teachers.find((teacher) => teacher.name === name));
-                    setSlidePosition(' sched');
-                }});
-            if (selectedTeacher != '') {
-                setSchedule(e(TeacherScheduleTable, {teacher: selectedTeacher, selectedColors}));
-            }
-        }
-        else if (scheduleType == 'lead'){
-            let stationList = fieldDay.stations.map(t=>t.stationName).filter(s => s !== 'Lunch').sort(
-                (a, b) => (a > b) ? 1: -1
-            );
 
-            setList({options: stationList, selectedOption: selectedStation.stationName,
-                handleButtonClick: (stationName) => {
-                    setselectedStation(fieldDay.stations.find((station) => station.stationName === stationName));
-                    setSlidePosition(' sched');
-                }});
-            if (selectedStation != '') {
-                setSchedule(e(StationScheduleTable, {station: selectedStation, selectedColors}));
-            }
-        }
-        if (fieldDay.name != '' && slidePosition != ' sched' && (scheduleType == 'lead' || scheduleType == 'teach' )) {
-            setSlidePosition(' list');
-        }
-    }
-
-    React.useEffect(() => {
-        updateView();
-      }, [scheduleType, fieldDay, selectedTeacher, selectedStation]);      
-    //setSlides([e(NavScreen, {key:'nav', fieldDay, fieldDays, handleFieldDayChange, scheduleType, handleScheduleTypeChange})]);
-
-    return [e('div', {key:'back', className: 'back'}, 
-            e(BackButton, {setSlidePosition, slidePosition})
+    return [
+        e('div', {key: 'topbar', className: 'topbar'}, 
+            e('button', {key: 'k2', className: 'nav k2' + (fieldDay.name == 'K - 2' ? " sel":""),
+                onClick: () => setFieldDay(fieldDays[0])}, 'K - 2'),
+            e('button', {key: 't5', className: 'nav t5' + (fieldDay.name == '3 - 5' ? " sel":""),
+                onClick: () => setFieldDay(fieldDays[1])}, '3 - 5'),
+            e(Dropdown, {key: 'dropdown', text: 'Schedules', dropdown: 'test'}
+            ),
+            e('button', {key: 'print', className: 'nav print', onClick: () => window.print()}, "🖨️ Print"),
         ),
-        e(Div, {key: "documentView", css:"#documentView slider"},
-            e('div', {key:'slider', className: 'slides' + slidePosition},
-                e('div', {key:'nav', className: 'slide'},
-                    e(NavScreen, {key:'nav', fieldDay, fieldDays, setFieldDay, scheduleType, setScheduleType})
-                ),
-                e('div', {key:'list', className: 'slide'},
-                    e(DropdownList, list)
-                ),
-                e('div', {key:'schedule', className: 'slide'},
-                    e('div', {className: 'schedule portrait'}, schedule)
-                )
-            )
-        ),
-        e('div', {key:'forward', className: 'back'})
-    ]
-}
-
-function BackButton({slidePosition, setSlidePosition}){
-    return slidePosition == '' ? '' : e('button', {className: 'back',
-        onClick: () => {
-            if (slidePosition == ' list') setSlidePosition('');
-            else if (slidePosition == ' sched') setSlidePosition(' list');
-        }
-    }, 'Back');
-}
-
-function NavScreen({fieldDay, fieldDays, setFieldDay, scheduleType, setScheduleType}){
-    return e('div', {id:'nav', className: 'nav'}, "Welcome to the 2023 Sargent Shriver Field Day!",
-            e('div', {key:'fd', className: 'navsub'}, "Choose your Field Day:"),
-            e('button', {key: 'k2', className: 'nav-button k2' + (fieldDay.name == 'K - 2' ? " sel":""),
-                onClick: () => setFieldDay(fieldDays[0])}, 'K - 2 Field Day'),
-            e('button', {key: 't5', className: 'nav-button t5' + (fieldDay.name == '3 - 5' ? " sel":""),
-                onClick: () => setFieldDay(fieldDays[1])}, '3 - 5 Field Day'),
-            e('div', {key: 'sch', className: 'navsub'}, "And your schedule type:"),
-            e('button', {key: 'teach', className: 'nav-button teach' + (scheduleType == 'teach' ? " sel":""),
-                onClick: () => setScheduleType('teach')}, 'Classroom Teacher'),
-            e('button', {key: 'lead', className: 'nav-button lead' + (scheduleType == 'lead' ? " sel":""),
-                onClick: () => setScheduleType('lead')}, 'Station Leader'),
-            e('button', {key: 'full', className: 'nav-button full' + (scheduleType == 'full' ? " sel":""),
-                onClick: () => setScheduleType('full')}, 'Full Schedule')
-    )
-}
-
-function ViewStationSchedules({stations, selectedStation, handleStationChange, selectedColors}) {
-    return [e(Div, {key: "topbar", css: "topbar"},
-        e(Dropdown, {options: stations.map(station => station.stationName), 
-            selectedOption: selectedStation.stationName, handleOptionChange: handleStationChange}),
-        ),
-        e(Div, {key: "resize", css:"resize", style:{height: scaleFactor[1]}},
-            e(Div, {key: "displayArea", css:"#displayArea"}, 
-                e(StationScheduleTable, {key:"station", station: selectedStation, selectedColors})
-            )
+        e('div', {className: 'container'}, 
+            e(ViewFullSchedule, {fieldDay, selectedColors})
         )
     ]
 }
 
-function ViewTeacherSchedules({teachers, selectedTeacher, handleTeacherChange, selectedColors}) {
-    return [e(Div, {key: "topbar", css: "topbar"},
-        e(Dropdown, {options: teachers.map(teacher => teacher.name), 
-                selectedOption: selectedTeacher.name, handleOptionChange: handleTeacherChange}),
-        ),
-        e(Div, {key: "resize", css:"resize", style:{height: scaleFactor[1]}},
-            e(Div, {key: "displayArea", css:"#displayArea"}, 
-                e(TeacherScheduleTable, {key:selectedTeacher.name, teacher: selectedTeacher, selectedColors})
-            )   
-        )
-    ]
-}
+const Dropdown = ({ text, fieldDay, setSchedule }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
 
-function Div({css='', ...props}) {
-    let idClassName = {};
-    css.split(" ").forEach(c => {
-        if (c.charAt(0) == "#") idClassName.id = c.substring(1);
-        else idClassName.className = idClassName.className ? idClassName.className + " " + c : c;
-    });
-    return e('div', {...props, ...idClassName});
+    //const fullSchedule = e("button", )
+
+    return e("div", { className: "dropdown" }, 
+        e("button", { className: "nav", onClick: () =>  setIsOpen(!isOpen) }, text),
+        isOpen && dropdown
+    );
+};
+
+const DropdownList = ({fieldDay, handleButtonClick}) => {
+    return e("div", { className: "dropdown-menu" }, options.map((option) => {
+        return e("button", { key: option, className: "option-button" + (selectedOption == option ? " sel":""),
+            onClick: () => handleButtonClick(option)}, option)
+        })
+        )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
