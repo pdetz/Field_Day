@@ -56,8 +56,7 @@
     #app,
     body,
     div.page {
-        border: 1px solid blue;
-        width: 750px;
+        width: 100%;
       background: none;
     }
 
@@ -76,25 +75,6 @@
       padding: 2px;
     }
   
-    td.n {
-        width: 2.25rem;
-        text-align: left;
-        font-size: 0.875rem;
-    }
-    
-    td.station {
-        width: 8rem;
-        padding-left: 0.25rem;
-        text-align: left;
-    }
-    
-    td.lunch {
-        font-weight: bold;
-        padding: 0.5rem;
-    }
-    
-    td.time {
-        width: 5rem
-    }
+
   }
   
