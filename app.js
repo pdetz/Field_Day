@@ -72,7 +72,7 @@ const Dropdown = ({ text, fieldDay, schedule, setSchedule }) => {
     //const fullSchedule = e("button", )
     console.log(fieldDay);
 
-    return e("div", { className: "dropdown" }, 
+    return e("div", { className: "dropdown nav" }, 
         e("button", { className: "schedule" + (isOpen ? ' sel':''), onClick: () =>  setIsOpen(!isOpen) }, text),
         isOpen &&
             e('div', {key: 'menu', className: 'dropdown-menu column'},

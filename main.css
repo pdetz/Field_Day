@@ -112,7 +112,6 @@ button {
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.25rem;
-  width: 8rem;
   border: 0.125rem solid #000;
   border-radius: 0.5rem;
   background-color: #446;
@@ -131,6 +130,10 @@ button {
   background-color: #000;
   margin: 0.125rem;
   width:calc(100% - 0.25rem);
+}
+
+.nav {
+  width: calc(25% - 0.25rem);
 }
 
 button.sel {
@@ -156,6 +159,9 @@ button:active {
   background-color: #ff6;
 }
 
+button.schedule {
+  width: 100%
+}
 
 button.schedule:hover, button.schedule.sel {
   background-color: #46f;
