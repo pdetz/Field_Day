@@ -43,13 +43,58 @@
 }
 
 
-  @media print {
-  
+@media print {
     * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
-    .topbar {display:none}
-    #app, body {background:none}
+  
+    .topbar {
+      display: none;
+    }
+  
+    #app,
+    body,
+    div.page {
+        border: 1px solid blue;
+        width: 750px;
+      background: none;
+    }
 
+    #app {height: auto}
+  
+    div.page {
+        margin: 0;
+        padding:0;
+      page-break-after: always;
+      page-break-inside: avoid; /* Added property */
+    }
+
+    table.schedule td {
+      line-height: 14pt;
+      font-size: 12pt;
+      padding: 2px;
+    }
+  
+    td.n {
+        width: 2.25rem;
+        text-align: left;
+        font-size: 0.875rem;
+    }
+    
+    td.station {
+        width: 8rem;
+        padding-left: 0.25rem;
+        text-align: left;
+    }
+    
+    td.lunch {
+        font-weight: bold;
+        padding: 0.5rem;
+    }
+    
+    td.time {
+        width: 5rem
+    }
   }
+  

@@ -61,20 +61,3 @@ td.time {
     font-stretch: semi-condensed;
     font-size: 0.75rem;
 }
-
-@media print {
-            
-    table.schedule td {
-        line-height: 16px;
-        font-size: 10pt;
-        padding: 1px;
-        width: 30px;
-    }
-
-    table.schedule td.name {
-        padding-left: 4px;
-        text-align: left;
-    }
-
-    table.schedule tr:nth-child(even){background-color: #fff;}
-}
