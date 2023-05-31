@@ -86,7 +86,7 @@ const Dropdown = ({ text, fieldDay, schedule, setSchedule }) => {
                         }
                     }),
                     e(DropdownList, {key: 'stations', css: 'stations column test', 
-                        options: fieldDay.stations.map(t=>t.name), 
+                        options: fieldDay.stations.filter(s => s.name !== "Lunch").map(t=>t.name), 
                         selectedOption: schedule,
                         handleButtonClick: (option) => {
                             setSchedule(option);
