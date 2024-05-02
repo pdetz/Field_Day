@@ -52,7 +52,7 @@ function StationScheduleTable({station, selectedColors}){
 
 function ViewFullSchedule({fieldDay, selectedColors}) {
     return e('div', {className: 'landscape page'}, 
-        e('div', {className:'title'}, fieldDay.name + " Field Day 2023 - Full Schedule"),
+        e('div', {className:'title'}, fieldDay.name + " Field Day " + YEAR + " - Full Schedule"),
         e('table', {key:'full', className:"full schedule"},
             e('thead', {style:{backgroundColor: selectedColors[0]}}, 
                 e('tr', {key:"head", className:"head"},
