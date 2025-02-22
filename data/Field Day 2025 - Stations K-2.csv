@@ -1,14 +1,14 @@
 n,name,location,firstTeacher,start,stop
 1,Oscar the Grouch,Gym,Rubio,9:30,9:40
 2,Just Dance,Gym,Menjivar,9:40,9:50
-3,Transition to blacktop,Gym,Dean,9:50,10:00
-4,Water balloon relay,Portables,Ramos,10:00,10:10
-5,Sponge relay,Right blacktop,Hanlon,10:10,10:20
-6,Ring toss,Right blacktop,Wang,10:20,10:30
-7,Scooter Relay,Right blacktop,Joyner,10:30,10:40
-8,Bowling,Left blacktop,Castro,10:40,10:50
-9,Playground,Left blacktop,Do,10:50,11:00
-10,Fire and Ice tag,behind playground,Lo,11:00,11:10
+3,Transition to blacktop,,Dean,9:50,10:00
+4,Water balloon relay,Blacktop,Ramos,10:00,10:10
+5,Sponge relay,Blacktop,Hanlon,10:10,10:20
+6,Ring toss,Blacktop,Wang,10:20,10:30
+7,Scooter Relay,Blacktop,Joyner,10:30,10:40
+8,Bowling,Blacktop,Castro,10:40,10:50
+9,Playground,Playground,Do,10:50,11:00
+10,Fire and Ice tag,Field,Lo,11:00,11:10
 Lunch,,,,11:15,12:15
 11,Team Tag,Field,Bray,12:20,12:30
 12,Scoops,Field,Wilkerson,12:30,12:40
@@ -17,6 +17,6 @@ Lunch,,,,11:15,12:15
 15,Lollipop paddles,Field,Martinez,1:00,1:10
 16,Parachute,Field,Gadson,1:10,1:20
 17,Clean up the backyard,Field,Aguilar,1:20,1:30
-18,Jump ropes,Field,Garcia,1:30,1:40
+18,Jump ropes,Grass in fron of 4th grade portables,Garcia,1:30,1:40
 19,Memories/Chalk,Sidewalk in front of 4th grade portables,,1:40,1:50
-20,Transition to gym,By tree next to daycare doors,,1:50,2:00
+20,Transition to gym,,,1:50,2:00
