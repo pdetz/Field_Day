@@ -58,7 +58,7 @@ function ViewFullSchedule({fieldDay, selectedColors}) {
                 e('tr', {key:"head", className:"head"},
                     e('td', {key: "blank"}, ""),
                     fieldDay.stations.map(station =>{
-                        if (station.n != "Lunch") return e('td', {key: station.name}, station.name)
+                        if (station.n != "Lunch") return e('td', {key: station.name, className: 'full'}, station.name)
                     })
                 )
             ),

@@ -29,6 +29,10 @@ td {
     text-align: center;
 }
 
+td.full {
+    line-height: 0.9rem;
+}
+
 td.n {
     width: 2.25rem;
     text-align: left;
@@ -36,7 +40,7 @@ td.n {
 }
 
 td.station {
-    width: 10rem;
+    width: 13rem;
     padding-left: 0.25rem;
     text-align: left;
 }
@@ -47,9 +51,8 @@ td.lunch {
 }
 
 td.time {
-    width: 6.125rem
+    width: 5rem
 }
-
 
 .full.schedule td {
     font-stretch: semi-condensed;

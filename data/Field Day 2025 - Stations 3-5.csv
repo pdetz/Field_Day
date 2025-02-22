@@ -9,7 +9,7 @@ n,name,location,firstTeacher,start,stop
 8,Golf,Blacktop,Rivera,10:40,10:50
 9,Badminton,Field,Francois,10:50,11:00
 10,Team tag,Field,Delgado,11:00,11:10
-Lunch,,,,11:15,12:15
+Lunch,Lunch,,,11:15,12:15
 11,Hockey pirates,Field,Macario,12:20,12:30
 12,Soccer game,Field,Christie,12:30,12:40
 13,Pinball,Field,Matthews,12:40,12:50
