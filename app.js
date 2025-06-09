@@ -26,8 +26,8 @@ function App(){
 
     return [
         e('div', {key: 'topbar', className: 'topbar'}, 
-            e('button', {key: 'k2', className: 'nav k2' + (fieldDay.name == 'K - 2' ? " sel":""),
-                onClick: () => setFieldDay(fieldDays[0])}, 'K - 2'),
+            e('button', {key: 'k2', className: 'nav k2' + (fieldDay.name == 'Indoor' ? " sel":""),
+                onClick: () => setFieldDay(fieldDays[0])}, 'Indoor'),
             e('button', {key: 't5', className: 'nav t5' + (fieldDay.name == '3 - 5' ? " sel":""),
                 onClick: () => setFieldDay(fieldDays[1])}, '3 - 5'),
             e(Dropdown, {key: 'dropdown', text: 'Schedules', fieldDay, schedule, setSchedule}
